@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:orientation="vertical">
+    <android.support.v7.widget.CardView
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginTop="10dp"
+            android:paddingRight="8dp"
+            app:cardCornerRadius="25dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="8dp"
+            app:cardBackgroundColor="#4A235A"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="0.031">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp">
+            <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/img_movie"
+                    android:background="@android:color/darker_gray"/>
+            <TextView
+                    android:id="@+id/movieTitleID"
+                    android:paddingLeft="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_toRightOf="@id/img_movie"
+                    android:text="Movie Title"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textColor="@android:color/darker_gray"
+                    android:fontFamily="@font/audiowide"/>
+
+            <TextView
+                    android:id="@+id/movieReleaseID"
+                    android:padding="5dp"
+                    android:layout_toRightOf="@id/img_movie"
+                    android:text="Released:"
+                    android:layout_below="@id/movieTitleID"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textColor="@android:color/darker_gray"
+                    android:fontFamily="@font/schoolbell"/>
+
+            <TextView
+                    android:id="@+id/movieCatID"
+                    android:padding="5dp"
+                    android:text="Category"
+                    android:layout_below="@id/movieReleaseID"
+                    android:layout_toRightOf="@id/img_movie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textColor="@android:color/darker_gray"
+                    android:fontFamily="@font/homemade_apple"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

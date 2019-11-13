@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "582039751176",
+    "firebase_url": "https://loodosmoviearchive.firebaseio.com",
+    "project_id": "loodosmoviearchive",
+    "storage_bucket": "loodosmoviearchive.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:582039751176:android:a6682174d6af4bc2aadfbd",
+        "android_client_info": {
+          "package_name": "com.example.muko.loodos_movearchive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "582039751176-smlphc614bj3pj9s21r8jdbpkcsj1uqf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXm1agAaWFEVvFYp03Zq_xFT3dhgXSkqI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "582039751176-smlphc614bj3pj9s21r8jdbpkcsj1uqf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
