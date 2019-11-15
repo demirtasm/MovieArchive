@@ -8,6 +8,7 @@
         <item>@font/cedarville_cursive</item>
         <item>@font/cherry_cream_soda</item>
         <item>@font/days_one</item>
+        <item>@font/diplomata_sc</item>
         <item>@font/finger_paint</item>
         <item>@font/homemade_apple</item>
         <item>@font/pacifico</item>
@@ -15,5 +16,6 @@
         <item>@font/rouge_script</item>
         <item>@font/schoolbell</item>
         <item>@font/sonsie_one</item>
+        <item>@font/wendy_one</item>
     </array>
 </resources>

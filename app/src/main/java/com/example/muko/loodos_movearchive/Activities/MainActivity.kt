@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -66,13 +67,24 @@ class MainActivity : AppCompatActivity() {
         var Id = item?.itemId
         when (Id) {
             R.id.menuLinearViewHorizontal -> {
-//                var linearLayoutManager =LinearLayoutManager(LinearLayoutManager.HORIZONTAL)
-//                checkMovie.layoutManager = linearLayoutManager
+                var menuLinearHorizontal = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                checkMovie.layoutManager = menuLinearHorizontal
             }
-            R.id.menuLinearViewVertical -> {}
-            R.id.menuGrid -> {}
-            R.id.menuStaggeredHorizontal->{}
-            R.id.menuStaggeredVertical->{}
+            R.id.menuLinearViewVertical -> {
+                var menuLinearVertical = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                checkMovie.layoutManager = menuLinearVertical
+            }
+            R.id.menuGrid -> {
+                var menuGrid = GridLayoutManager(this, 2)
+                checkMovie.layoutManager = menuGrid}
+            R.id.menuStaggeredHorizontal->{
+                var menuStaggerHorizontal = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+                checkMovie.layoutManager = menuStaggerHorizontal
+            }
+            R.id.menuStaggeredVertical->{
+                var menuStaggerVertical = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                checkMovie.layoutManager = menuStaggerVertical
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -94,7 +106,7 @@ class MainActivity : AppCompatActivity() {
                         movie.setYear("Year : " + movieObj.getString("Year"))
                         movie.setMovieType("Type: " + movieObj.getString("Type"))
                         movie.setPoster(movieObj.getString("Poster"))
-
+                        movie.setImdbId(movieObj.getString("imdbID"))
                         Log.d("Movies: ", movie.getTitle())
 
                         arrayList.add(movie)

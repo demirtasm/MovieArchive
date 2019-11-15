@@ -41,17 +41,20 @@ class MovieRecyclerViewAdapter(allMovies: ArrayList<MovieData>) :
 
         holder.title.setText(movie.getTitle())
         holder.type.setText(movie.getMovieType())
-
+        holder.id.setText(movie.getImdbId())
         Picasso.get()
             .load(posterLink)
             .placeholder(android.R.drawable.ic_btn_speak_now)
             .into(holder.poster)
 
         holder.year.setText(movie.getYear())
-        var oanolıs = movies.get(position)
+
         holder.itemView.setOnClickListener { v->
             var intent = Intent(v.context, MovieDetailActivity::class.java)
-            intent.putExtra("title", movie.getTitle())
+            intent.putExtra("imdbID", movie.getImdbId())
+            intent.putExtra("Title", movie.getTitle())
+            intent.putExtra("Poster", movie.getPoster())
+
             v.context.startActivity(intent)
         }
     }
@@ -62,6 +65,6 @@ class MovieRecyclerViewAdapter(allMovies: ArrayList<MovieData>) :
         var poster = itemView.findViewById(R.id.img_movie) as ImageView
         var year = itemView.findViewById(R.id.movieYear) as TextView
         var type = itemView.findViewById(R.id.movieCatID) as TextView
-
+        var id = itemView.findViewById(R.id.movieImdbID) as TextView
        }
     }

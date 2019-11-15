@@ -1,7 +1,10 @@
 package com.example.muko.loodos_movearchive.Activities
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.graphics.Palette
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -52,41 +55,57 @@ class MovieDetailActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
 
         if (gelenIntent != null) {
-            tv_title.text = gelenIntent.getStringExtra("title")
+            tv_imdbid.text = gelenIntent.getStringExtra("imdbID")
+            tv_title.text = gelenIntent.getStringExtra("Title")
+             img_detail_movie.setImageResource(gelenIntent.getIntExtra("Poster",R.drawable.default_shape))
             setUpUI()
-            setup(gelenIntent.getStringExtra("title").toString())
+            setup(gelenIntent.getStringExtra("imdbID").toString())
 
-
-            Log.e("gelen veri: ", gelenIntent.getStringExtra("title").toString())
         }
+        setSupportActionBar(anim_toolbar)
+        collapsing_toolbar.title = gelenIntent.getStringExtra("Title") //toolbar header
+
+
+//        var bitmap : Bitmap = BitmapFactory.decodeResource(resources, ))
+//
+//        Palette.from(bitmap).generate(object  : Palette.PaletteAsyncListener{
+//            override fun onGenerated(palette: Palette) {
+//                var color = palette?.getDarkVibrantColor(R.attr.colorAccent)
+//                collapsing_toolbar.setContentScrimColor(color!!)
+//                window.statusBarColor = color
+//
+//            }
+//        })
+
     }
 
     private fun setup(name: String) {
 
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
-            MovieUrl().URL + name + MovieUrl().API_KEY, Response.Listener { response ->
+            MovieUrl().URL_LEFT_ID + name + MovieUrl().API_ID, Response.Listener { response ->
 
                 try {
-                    val jresponse: Boolean = response.getBoolean("Response")
-
                     movieTitle?.setText(response.getString("Title"))
-                    movieYear?.setText(response.getString("Year"))
-                    movieID?.setText(response.getString("imdbID"))
-                    movieType?.setText(response.getString("Type"))
-                    //movieImage?.setImageResource()
-                    movieGenre?.setText(response.getString("Genre"))
-                    movieRuntime?.setText(response.getString("Runtime"))
-                    movieWriter?.setText(response.getString("Writer"))
-                    movieActors?.setText(response.getString("Actors"))
-                    moviePlot?.setText(response.getString("Plot"))
-                    movieLanguage?.setText(response.getString("Language"))
-                    movieImdbRating?.setText(response.getString("imdbRating"))
+                    movieYear?.setText("Year : " +response.getString("Year"))
+                    movieID?.setText("Imbd ID : "+response.getString("imdbID"))
+                    movieType?.setText("Type : "+response.getString("Type"))
+                    Picasso.get()
+                        .load(response.getString("Poster"))
+                        .into(movieImage)
+                    movieGenre?.setText("Genre : "+response.getString("Genre"))
+                    movieRuntime?.setText("Runtime : "+response.getString("Runtime"))
+                    movieWriter?.setText("Writer : "+response.getString("Writer"))
+                    movieActors?.setText("Actors : "+response.getString("Actors"))
+                    moviePlot?.setText("Plot : "+response.getString("Plot"))
+                    movieLanguage?.setText("Language : "+response.getString("Language"))
+                    movieImdbRating?.setText(" "+response.getString("imdbRating"))
                     movieProductions?.setText(response.getString("Production"))
 
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
             }, Response.ErrorListener { error -> VolleyLog.d("Error:", error.message) })
+
         queue?.add(jsonObjectRequest)
 
     }
@@ -97,7 +116,7 @@ class MovieDetailActivity : AppCompatActivity() {
         movieYear = findViewById(R.id.tv_year) as TextView
         movieID = findViewById(R.id.tv_imdbid) as TextView
         movieType = findViewById(R.id.tv_type) as TextView
-        //movieImage = findViewById(R.id.img_detail_movie) as ImageView
+        movieImage = findViewById(R.id.img_detail_movie) as ImageView
         movieGenre = findViewById(R.id.tv_genre) as TextView
         movieRuntime = findViewById(R.id.tv_runtime) as TextView
         movieDirector = findViewById(R.id.tv_director) as TextView

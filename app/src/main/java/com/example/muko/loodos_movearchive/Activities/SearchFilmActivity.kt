@@ -50,7 +50,7 @@ class SearchFilmActivity : AppCompatActivity(){
     fun getMovies(searchTerm: String) {
         arrayList.clear()
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
-            MovieUrl().URL + searchTerm + MovieUrl().API_KEY,
+            MovieUrl().URL_LEFT + searchTerm + MovieUrl().API,
             Response.Listener { response ->
                 try {
                     val jresponse:Boolean = response.getBoolean("Response")
@@ -64,6 +64,8 @@ class SearchFilmActivity : AppCompatActivity(){
                             movie.setYear("Year Released: " + movieObj.getString("Year"))
                             movie.setMovieType("Type: " + movieObj.getString("Type"))
                             movie.setPoster(movieObj.getString("Poster"))
+
+                            movie.setImdbId(movieObj.getString("imdbID"))
 
                             Log.d("Movies Search: ", movie.getTitle())
 
