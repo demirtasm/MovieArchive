@@ -5,10 +5,13 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -19,9 +22,11 @@ import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.android.synthetic.main.search_view.view.*
 import org.json.JSONException
 import android.widget.EditText
+import android.widget.GridLayout
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.Volley
 import com.example.muko.loodos_movearchive.Adapter.MovieRecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.ArrayList
 
 
@@ -35,15 +40,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         queue = Volley.newRequestQueue(this)
         recyclerView = findViewById(R.id.checkMovie) as RecyclerView
 
-        recyclerView?.setHasFixedSize(true)
-        recyclerView?.setLayoutManager(LinearLayoutManager(this))
-        movieRecyclerViewAdapter = MovieRecyclerViewAdapter(arrayList)
-        recyclerView?.setAdapter(movieRecyclerViewAdapter)
-        movieRecyclerViewAdapter?.notifyDataSetChanged()
-
+        var myAdapter = MovieRecyclerViewAdapter(arrayList)
+        checkMovie.adapter = myAdapter
+        var linearLayoutManager = GridLayoutManager(this, 2)
+        checkMovie.layoutManager = linearLayoutManager
         checkOutMoves()
 
         val fab = findViewById<FloatingActionButton>(R.id.fab_search)
@@ -53,8 +57,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.mainmenu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        var Id = item?.itemId
+        when (Id) {
+            R.id.menuLinearViewHorizontal -> {
+//                var linearLayoutManager =LinearLayoutManager(LinearLayoutManager.HORIZONTAL)
+//                checkMovie.layoutManager = linearLayoutManager
+            }
+            R.id.menuLinearViewVertical -> {}
+            R.id.menuGrid -> {}
+            R.id.menuStaggeredHorizontal->{}
+            R.id.menuStaggeredVertical->{}
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun checkOutMoves() {
-        var url = "http://www.omdbapi.com/?s=godzilla&page=2&apikey=22efe740"
+        var url = "http://www.omdbapi.com/?s=godzilla&apikey=22efe740"
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET,
             url,
             Response.Listener { response ->
@@ -67,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
                         val movie = MovieData()
                         movie.setTitle(movieObj.getString("Title"))
-                        movie.setYear("Year Released: " + movieObj.getString("Year"))
+                        movie.setYear("Year : " + movieObj.getString("Year"))
                         movie.setMovieType("Type: " + movieObj.getString("Type"))
                         movie.setPoster(movieObj.getString("Poster"))
 
@@ -76,12 +100,14 @@ class MainActivity : AppCompatActivity() {
                         arrayList.add(movie)
                     }
                     movieRecyclerViewAdapter?.notifyDataSetChanged()
-                    Log.e("deneme", "selam")
+
                 } catch (e: JSONException) {
                     e.printStackTrace()
                 }
             }, Response.ErrorListener {
-                FancyToast.makeText(this,"Someting went wrong!",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show()
+
+                FancyToast.makeText(this, "Someting went wrong!", FancyToast.LENGTH_LONG, FancyToast.ERROR, false)
+                    .show()
             })
 
         queue?.add(jsonObjectRequest)

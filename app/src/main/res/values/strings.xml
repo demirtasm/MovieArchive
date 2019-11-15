@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Loodos-MoveArchive</string>
+    <string name="app_name">Movie Archive</string>
     <string name="check_internet_connection">Check Your Internet Connection!</string>
 </resources>

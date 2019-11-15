@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/crop"
+        android:background="@drawable/bg5"
         android:orientation="vertical">
     <RelativeLayout
             android:layout_width="match_parent"
@@ -29,9 +29,12 @@
                     app:layout_constraintStart_toStartOf="@+id/toolbar"/>
             <android.support.v7.widget.Toolbar
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="#4A235A "
-                    android:scrollbarSize="25dp" android:id="@+id/toolbar"
+                    android:layout_height="50dp"
+                    android:background="@drawable/edt_shape"
+                    android:layout_marginLeft="85dp"
+                    android:layout_marginRight="55dp"
+                    android:scrollbarSize="5dp"
+                    android:id="@+id/toolbar"
                     app:layout_constraintTop_toTopOf="@+id/titleText"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
@@ -41,13 +44,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@android:color/darker_gray"
-                        android:layout_marginLeft="45dp"
+                        android:layout_marginLeft="25dp"
                         android:layout_marginRight="25dp"
                         android:hint="E.g. : Joker"
+                        android:shadowRadius="5"
                         android:iconifiedByDefault="false"
                         android:drawableLeft="@drawable/search_icon_white_24dp"
-                        android:id="@+id/edtSearch" android:textColor="@android:color/white"
-                        tools:layout_editor_absoluteY="5dp" tools:layout_editor_absoluteX="45dp"
+                        android:id="@+id/edtSearch"
+                        android:textColor="@android:color/white"
+                        tools:layout_editor_absoluteY="5dp"
+                        tools:layout_editor_absoluteX="45dp"
                         android:fontFamily="@font/finger_paint">
 
                 </EditText>
@@ -60,14 +66,14 @@
                 android:text="Search"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
-                android:background="#4A235A"
+                android:background="@drawable/btn_shape"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_alignParentEnd="true"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
+                android:layout_margin="60dp"
                 app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="96dp"
-                android:fontFamily="@font/finger_paint" android:layout_marginEnd="16dp"
+                android:fontFamily="@font/finger_paint" android:layout_marginEnd="40dp"
                 android:layout_alignParentStart="true" android:layout_alignParentTop="true"/>
 
 
