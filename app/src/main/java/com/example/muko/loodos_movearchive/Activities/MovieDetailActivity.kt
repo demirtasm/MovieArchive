@@ -57,7 +57,7 @@ class MovieDetailActivity : AppCompatActivity() {
         if (gelenIntent != null) {
             tv_imdbid.text = gelenIntent.getStringExtra("imdbID")
             tv_title.text = gelenIntent.getStringExtra("Title")
-             img_detail_movie.setImageResource(gelenIntent.getIntExtra("Poster",R.drawable.default_shape))
+            img_detail_movie.setImageResource(gelenIntent.getIntExtra("Poster",R.drawable.default_shape))
             setUpUI()
             setup(gelenIntent.getStringExtra("imdbID").toString())
 
@@ -66,7 +66,7 @@ class MovieDetailActivity : AppCompatActivity() {
         collapsing_toolbar.title = gelenIntent.getStringExtra("Title") //toolbar header
 
 
-//        var bitmap : Bitmap = BitmapFactory.decodeResource(resources, ))
+//        var bitmap : Bitmap = BitmapFactory.decodeResource(resources,  gelenIntent.getIntExtra("Poster", R.drawable.default_shape))
 //
 //        Palette.from(bitmap).generate(object  : Palette.PaletteAsyncListener{
 //            override fun onGenerated(palette: Palette) {
