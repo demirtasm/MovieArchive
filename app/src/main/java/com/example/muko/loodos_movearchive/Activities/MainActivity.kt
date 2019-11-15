@@ -45,13 +45,16 @@ class MainActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(this)
         recyclerView = findViewById(R.id.checkMovie) as RecyclerView
 
+        checkOutMoves()
+
         var myAdapter = MovieRecyclerViewAdapter(arrayList)
         checkMovie.adapter = myAdapter
         var linearLayoutManager = GridLayoutManager(this, 2)
         checkMovie.layoutManager = linearLayoutManager
-        checkOutMoves()
+
 
         val fab = findViewById<FloatingActionButton>(R.id.fab_search)
+
         fab.setOnClickListener {
             var intent = Intent(applicationContext, SearchFilmActivity::class.java)
             startActivity(intent)
@@ -61,32 +64,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.mainmenu, menu)
         return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        var Id = item?.itemId
-        when (Id) {
-            R.id.menuLinearViewHorizontal -> {
-                var menuLinearHorizontal = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-                checkMovie.layoutManager = menuLinearHorizontal
-            }
-            R.id.menuLinearViewVertical -> {
-                var menuLinearVertical = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-                checkMovie.layoutManager = menuLinearVertical
-            }
-            R.id.menuGrid -> {
-                var menuGrid = GridLayoutManager(this, 2)
-                checkMovie.layoutManager = menuGrid}
-            R.id.menuStaggeredHorizontal->{
-                var menuStaggerHorizontal = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
-                checkMovie.layoutManager = menuStaggerHorizontal
-            }
-            R.id.menuStaggeredVertical->{
-                var menuStaggerVertical = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                checkMovie.layoutManager = menuStaggerVertical
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun checkOutMoves() {
@@ -123,5 +100,31 @@ class MainActivity : AppCompatActivity() {
             })
 
         queue?.add(jsonObjectRequest)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        var Id = item?.itemId
+        when (Id) {
+            R.id.menuLinearViewHorizontal -> {
+                var menuLinearHorizontal = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+                checkMovie.layoutManager = menuLinearHorizontal
+            }
+            R.id.menuLinearViewVertical -> {
+                var menuLinearVertical = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+                checkMovie.layoutManager = menuLinearVertical
+            }
+            R.id.menuGrid -> {
+                var menuGrid = GridLayoutManager(this, 2)
+                checkMovie.layoutManager = menuGrid}
+            R.id.menuStaggeredHorizontal->{
+                var menuStaggerHorizontal = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+                checkMovie.layoutManager = menuStaggerHorizontal
+            }
+            R.id.menuStaggeredVertical->{
+                var menuStaggerVertical = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                checkMovie.layoutManager = menuStaggerVertical
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

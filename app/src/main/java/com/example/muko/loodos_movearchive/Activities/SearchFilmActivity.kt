@@ -42,8 +42,6 @@ class SearchFilmActivity : AppCompatActivity(){
             recyclerViewsearch.adapter = myAdapter
             var linearLayoutManager = GridLayoutManager(this, 2)
             recyclerViewsearch.layoutManager = linearLayoutManager
-
-
         }
     }
 
@@ -54,7 +52,6 @@ class SearchFilmActivity : AppCompatActivity(){
             Response.Listener { response ->
                 try {
                     val jresponse:Boolean = response.getBoolean("Response")
-
                     if (jresponse == true) {
                         val moviesArray = response.getJSONArray("Search")
                         for (i in 0 until moviesArray.length()) {

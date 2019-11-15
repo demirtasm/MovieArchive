@@ -53,7 +53,7 @@ class MovieRecyclerViewAdapter(allMovies: ArrayList<MovieData>) :
             var intent = Intent(v.context, MovieDetailActivity::class.java)
             intent.putExtra("imdbID", movie.getImdbId())
             intent.putExtra("Title", movie.getTitle())
-            intent.putExtra("Poster", movie.getPoster())
+            //intent.putExtra("Poster", movie.getPoster())
 
             v.context.startActivity(intent)
         }
